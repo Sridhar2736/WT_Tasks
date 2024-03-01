@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#registrationForm").submit(function(event) {
+               event.preventDefault();
+               var isValid = true;
+
+               var firstName = $("#firstName").val();
+               var lastName = $("#lastName").val();
+               var nameRegex = /^[A-Za-z]+$/;
+               if(firstName.length < 8 || !nameRegex.test(firstName) || lastName.length < 8 || !nameRegex.test(lastName)) {
+                alert("Invalid First Name or Last Name");
+                isValid = false;
+               }
+
+              var username = $("#username").val();
+              var usernameRegex = /^[A-Za-z0-9_]+$/;
+              if(!usernameRegex.test(username)) {
+                alert("Invalid Username");
+                isValid = false;
+              }
+
+              var password = $("#password").val();
+              var passwordRegex = /^(?=.[A-Z])(?=.[!@#$%^&])[A-Za-z0-9!@#$%^&]+$/;
+              if (password.length < 8 || !passwordRegex.test(password)) {
+                alert("Invalid Password");
+                isValid = false;
+              }
+
+              var dob = $("#dob").val();
+              var dateRegex = /^(\d{1,2})-(\d{1,2})-(\d{4})$/;
+              if (!dateRegex.test(dob)) {
+                alert("Invalid Date of Birth");
+                isValid = false;
+              }
+
+              var postalCode = $("#postalCode").val();
+              var postalCodeRegex = /^[0-9]{6}$/;
+              if (!postalCodeRegex.test(postalCode)) {
+                alert("Invalid Postal Code");
+                isValid = false;
+              }
+
+              var mobileNo = $("#mobileNo").val();
+              var mobileNoRegex = /^[0-9]{10}$/;
+              if (!mobileNoRegex.test(mobileNo)) {
+                alert("Invalid Mobile Number");
+                isValid = false;
+              }
+
+              var email = $("#email").val();
+              var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(email)) {
+                alert("Invalid Email");
+                isValid = false;
+              }
+
+              if (isValid) {
+                alert("Form submitted successfully!");
+              }
+
+            });
+        });
+    </script>
+    <style>
+        #registrationForm {
+            text-align: center;
+        }
+        fieldset{
+        margin:0px 500px 0px 500px;
+        }
+    </style>
+</head>
+<body>
+<fieldset>
+<form id="registrationForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName"><br><br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName"><br><br>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <label for="dob">Date of Birth:</label>
+    <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY"><br><br>
+    <label for="postalCode">Postal Code:</label>
+    <input type="text" id="postalCode" name="postalCode"><br><br>
+    <label for="mobileNo">Mobile No.:</label>
+    <input type="text" id="mobileNo" name="mobileNo" ><br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" placeholder="examplea@gmail.com" ><br><br>
+    <input type="submit" value="Submit">
+</form>
+</fieldset>
+</body>
+</html>
